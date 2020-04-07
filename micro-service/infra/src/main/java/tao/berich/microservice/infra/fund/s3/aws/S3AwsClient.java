@@ -1,6 +1,10 @@
 package tao.berich.microservice.infra.fund.s3.aws;
 
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import software.amazon.awssdk.core.ResponseInputStream;
 import software.amazon.awssdk.core.sync.ResponseTransformer;
@@ -8,20 +12,29 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.GetObjectRequest;
 import software.amazon.awssdk.services.s3.model.GetObjectResponse;
+import tao.berich.microservice.domain.model.Fund;
+import tao.berich.microservice.infra.fund.dto.FundDto;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.time.Duration;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Component
 public class S3AwsClient {
 
-    private final S3Client s3;
     private static final long API_CALL_TIMEOUT = 60;
     private static final long API_CALL_ATTEMPT_TIMEOUT = 120;
 
-    S3AwsClient() {
+    private final static Logger LOG = LoggerFactory.getLogger(S3AwsClient.class);
+
+    private final S3Client s3;
+    private final ObjectMapper objectMapper;
+
+    S3AwsClient(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
         this.s3 = S3Client
                 .builder()
                 .region(Region.EU_WEST_3)
@@ -30,22 +43,17 @@ public class S3AwsClient {
                 .build();
     }
 
-    public void getFundList(String bucketName, String keyName){
+    public Stream<Fund> getFundList(String bucketName, String keyName){
         final GetObjectRequest getRequest = GetObjectRequest.builder().bucket(bucketName).key(keyName).build();
         try (final ResponseInputStream<GetObjectResponse> inputStream = s3.getObject(getRequest,
                 ResponseTransformer.toInputStream())){
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-            System.out.println();
+            final List<FundDto> funds = objectMapper.readValue(inputStream.readAllBytes(), new TypeReference<List<FundDto>>() {
+            });
+            return funds.stream().map(FundDto::toDomain);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.error(String.format("Fail to get fund list from s3 with bucket name [%s], key name [%s]", bucketName, keyName), e);
+            return Stream.empty();
         }
-
-
     }
 
 }

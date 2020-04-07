@@ -8,7 +8,11 @@ import tao.berich.microservice.infra.fund.s3.aws.S3AwsClient;
 
 @Service
 public class FundServiceImpl implements FundService {
+
     private final S3AwsClient s3AwsClient;
+
+    private static final String FUND_BUCKET_NAME = "fund-list";
+    private static final String FUND_KEY_NAME= "fund.json";
 
     public FundServiceImpl(S3AwsClient s3AwsClient) {
         this.s3AwsClient = s3AwsClient;
@@ -16,7 +20,6 @@ public class FundServiceImpl implements FundService {
 
     @Override
     public Flux<Fund> getFunds() {
-        //s3AwsClient.getFundList();
-        return null;
+        return Flux.fromStream(s3AwsClient.getFundList(FUND_BUCKET_NAME, FUND_KEY_NAME));
     }
 }
