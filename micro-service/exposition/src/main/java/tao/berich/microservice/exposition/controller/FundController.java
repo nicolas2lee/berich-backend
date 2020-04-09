@@ -8,6 +8,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import tao.berich.microservice.domain.FundService;
 import tao.berich.microservice.domain.model.Fund;
+import tao.berich.microservice.domain.model.FundDetail;
 
 @RestController
 public class FundController {
@@ -23,9 +24,9 @@ public class FundController {
         return fundService.getFunds();
     }
 
-    @GetMapping("/funds/{id}")
-    public Mono<String> getFundDetailById(@PathVariable(name = "id") String fundId) {
-        return Mono.just("Posting back..");
+    @GetMapping("/funds/{fundCode}")
+    public Mono<FundDetail> getFundDetailById(@PathVariable(name = "fundCode") String fundCode) {
+        return fundService.getFundDetailByCode(fundCode);
     }
 }
 
