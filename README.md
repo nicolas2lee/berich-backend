@@ -24,7 +24,11 @@ https://netty.io/wiki/requirements-for-4.x.html#tls-with-openssl
 
 ### Command to run app
 
-    java -jar -Dspring.profiles.active=prod -Dspring.config.location=./ exposition-1.0-SNAPSHOT.jar
+    java -jar -Dspring.profiles.active=prod -Dspring.config.location=./ exposition-1.0-SNAPSHOT.jar &
+    
+### url
+
+http://ec2-35-180-39-209.eu-west-3.compute.amazonaws.com:8080
     
 ## Reference
 * Installation jdk https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/generic-linux-install.html 
