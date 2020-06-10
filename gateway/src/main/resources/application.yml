@@ -1,0 +1,18 @@
+
+spring:
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: servlet-app
+#          uri: http://localhost:8090
+#          predicates:
+#            - Path=/, /profile
+#          filters:
+#            - TokenRelay=
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id: 237072280971677
+            client-secret: 33fc6c7e7d22d41c3f337facf469db9e
