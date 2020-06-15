@@ -15,4 +15,4 @@ spring:
         registration:
           facebook:
             client-id: 237072280971677
-            client-secret: 33fc6c7e7d22d41c3f337facf469db9e
+            client-secret: <client secret>
