@@ -1,4 +1,3 @@
-
 spring:
 #  cloud:
 #    gateway:
@@ -14,5 +13,21 @@ spring:
       client:
         registration:
           facebook:
-            client-id: 237072280971677
-            client-secret: <client secret>
+            client-id: 261397464923860
+            client-secret: <secret id>
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        cloud:
+#          gateway: TRACE
+#        http:
+#          server:
+#            reactive: TRACE
+#        web:
+#          reactive: TRACE
+#        boot:
+#          autoconfigure:
+#            web: TRACE
+#    reactor:
+#      netty: TRACE
