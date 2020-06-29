@@ -17,9 +17,7 @@ import tao.berich.microservice.infra.fund.dto.FundDto;
 
 import java.io.IOException;
 import java.time.Duration;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Component
@@ -47,7 +45,7 @@ public class S3AwsClient {
         final GetObjectRequest getRequest = GetObjectRequest.builder().bucket(bucketName).key(keyName).build();
         try (final ResponseInputStream<GetObjectResponse> inputStream = s3.getObject(getRequest,
                 ResponseTransformer.toInputStream())){
-            final List<FundDto> funds = objectMapper.readValue(inputStream.readAllBytes(), new TypeReference<List<FundDto>>() {
+            final List<FundDto> funds = objectMapper.readValue(inputStream.readAllBytes(), new TypeReference<>() {
             });
             return funds.stream().map(FundDto::toDomain);
         } catch (IOException e) {

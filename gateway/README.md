@@ -16,4 +16,4 @@ https://dzone.com/articles/securing-legacy-apps-with-oauth-20-and-spring-cloud-g
    
    
    
-   
+ibmcloud cr build -t de.icr.io/berich/gateway .
