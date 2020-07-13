@@ -32,5 +32,7 @@ http://ec2-35-180-39-209.eu-west-3.compute.amazonaws.com:8080
     
 ## Reference
 * Installation jdk https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/generic-linux-install.html 
-    
+
+## ibmcloud
+ibmcloud cr build -t de.icr.io/berich/fund-service .    
     

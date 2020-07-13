@@ -17,3 +17,14 @@ https://dzone.com/articles/securing-legacy-apps-with-oauth-20-and-spring-cloud-g
    
    
 ibmcloud cr build -t de.icr.io/berich/gateway .
+
+
+## How to build an executable jar
+https://www.baeldung.com/executable-jar-with-maven
+
+## spring boot maven plugin
+https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/maven-plugin/reference/html/
+
+https://docs.spring.io/spring-boot/docs/current/reference/html/deployment.html#containers-deployment
+
+https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-executable-jar-format.html
