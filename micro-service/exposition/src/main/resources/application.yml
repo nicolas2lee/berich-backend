@@ -1,5 +1,10 @@
 spring:
   profiles:
-    active: local
-server:
-  port: 8090
+    active: @spring.profiles.active@
+management:
+  health:
+    probes:
+      enabled: true
+#  endpoint.health.group:
+#    liveness.include: livenessProbe
+#    readness.include: readnessProbe

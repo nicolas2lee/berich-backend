@@ -1,0 +1,20 @@
+server:
+  port: 8090
+
+#spring.data.mongodb.authentication-database= # Authentication database name.
+#spring.data.mongodb.database=test # Database name.
+#spring.data.mongodb.repositories.enabled=true # Enable Mongo repositories.
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://admin:<password>@berich-dev.suoqj.mongodb.net/berich-dev?retryWrites=true&w=majority
+#      username: admin
+#      password: Password@123456789
+#      database: berich-dev
+#      host: berich-dev.suoqj.mongodb.net/berich-dev
+#      port: 28220
+
+
+
+

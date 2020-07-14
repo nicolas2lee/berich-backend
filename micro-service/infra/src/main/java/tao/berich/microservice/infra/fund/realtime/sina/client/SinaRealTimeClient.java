@@ -13,10 +13,10 @@ import java.io.StringReader;
 import java.util.List;
 
 @Component
-public class SinaClient {
+public class SinaRealTimeClient {
     private final WebClient webClient;
 
-    public SinaClient() {
+    public SinaRealTimeClient() {
         this.webClient = WebClient.builder().baseUrl("http://hq.sinajs.cn").build();
     }
 

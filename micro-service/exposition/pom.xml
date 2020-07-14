@@ -11,6 +11,24 @@
 
     <artifactId>exposition</artifactId>
 
+    <profiles>
+        <profile>
+            <id>release</id>
+            <properties>
+                <spring.profiles.active>prod</spring.profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>local</id>
+            <properties>
+                <spring.profiles.active>local</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+
     <dependencies>
         <dependency>
             <groupId>tao</groupId>
@@ -32,6 +50,12 @@
             <artifactId>spring-cloud-starter-sleuth</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+
         <!-- swagger dependency-->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -48,14 +72,19 @@
     </dependencies>
 
     <build>
-<!--        <resources>
-            <resource>
+        <resources>
+        <!--    <resource>
                 <directory>src/main/resources</directory>
                 <excludes>
                     <exclude>*.yaml</exclude>
                 </excludes>
+            </resource>-->
+
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
             </resource>
-        </resources>-->
+        </resources>
 
         <plugins>
             <plugin>

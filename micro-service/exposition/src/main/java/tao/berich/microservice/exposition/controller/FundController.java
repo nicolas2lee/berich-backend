@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -16,6 +17,7 @@ import tao.berich.microservice.domain.model.FundDetail;
 import java.util.List;
 
 @RestController
+@RequestMapping("/")
 public class FundController {
 
     private static final Logger LOG = LoggerFactory.getLogger(FundController.class);
@@ -36,7 +38,7 @@ public class FundController {
         return fundService.getFundDetailByCode(fundCode);
     }
 
-    @GetMapping("/")
+    @GetMapping("/test")
     public Mono<String> testOauth2(ServerHttpRequest request) {
         final List<String> strings = request.getHeaders().get("x-b3-traceid");
         final String traceHeader = String.join(",", strings);
