@@ -53,7 +53,9 @@ mongo 'mongodb://dbaas252.hyperp-dbaas.cloud.ibm.com:28220,dbaas250.hyperp-dbaas
 
 注意，最多只能获取最近的1023个数据节点。
 
-例如，http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=sz002095&scale=60&ma=no&datalen=1023，获取深圳市场002095股票的60分钟数据，获取最近的1023个节点。
+例如，
+
+http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=sz002095&scale=60&ma=no&datalen=1023，获取深圳市场002095股票的60分钟数据，获取最近的1023个节点。
 
 
 

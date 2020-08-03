@@ -7,17 +7,18 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import tao.berich.microservice.domain.model.FundDetail;
+import tao.berich.microservice.infra.fund.HttpClient;
 import tao.berich.microservice.infra.fund.dto.FundDetailDto;
 
 import java.io.StringReader;
 import java.util.List;
 
 @Component
-public class SinaRealTimeClient {
+public class SinaRealTimeClient implements HttpClient {
     private final WebClient webClient;
 
     public SinaRealTimeClient() {
-        this.webClient = WebClient.builder().baseUrl("http://hq.sinajs.cn").build();
+        this.webClient = HttpClient.buildWebClient("http://hq.sinajs.cn");
     }
 
     public Mono<FundDetail> getFundDetailByFundCode(String fundCode){

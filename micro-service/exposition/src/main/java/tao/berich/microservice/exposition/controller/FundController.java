@@ -13,6 +13,7 @@ import reactor.core.publisher.Mono;
 import tao.berich.microservice.domain.FundService;
 import tao.berich.microservice.domain.model.Fund;
 import tao.berich.microservice.domain.model.FundDetail;
+import tao.berich.microservice.domain.model.FundDetailHistory;
 
 import java.util.List;
 
@@ -34,8 +35,13 @@ public class FundController {
     }
 
     @GetMapping("/funds/{fundCode}")
-    public Mono<FundDetail> getFundDetailById(@PathVariable(name = "fundCode") String fundCode) {
+    public Mono<FundDetail> getFundDetailByFundCode(@PathVariable(name = "fundCode") String fundCode) {
         return fundService.getFundDetailByCode(fundCode);
+    }
+
+    @GetMapping("/funds/{fundCode}/history")
+    public Flux<FundDetailHistory> getFundDetailHistoryByFundCode(@PathVariable(name = "fundCode") String fundCode) {
+        return fundService.getFundDetailHistoryByCode(fundCode);
     }
 
     @GetMapping("/test")
