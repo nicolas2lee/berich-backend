@@ -12,7 +12,7 @@ labels:
 replicaCount: 1
 
 image:
-  repository: de.icr.io/berich/fund-service
+  repository: nicolas2lee/berich-fund
   tag: latest
   pullPolicy: Always
 

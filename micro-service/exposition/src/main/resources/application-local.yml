@@ -10,10 +10,10 @@ spring:
     mongodb:
       uri: mongodb+srv://admin:<password>@berich-dev.suoqj.mongodb.net/berich-dev?retryWrites=true&w=majority
 #      username: admin
-#      password: Password@123456789
+#      password: password
 #      database: berich-dev
-#      host: berich-dev.suoqj.mongodb.net/berich-dev
-#      port: 28220
+#      host: berich-dev.suoqj.mongodb.net
+#      port: 27017
 
 
 

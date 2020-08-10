@@ -20,12 +20,33 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <excludes>
+                            <exclude>**.yml</exclude>
+                            <exclude>**.xml</exclude>
+                        </excludes>
+                    </resource>
+                </resources>
+            </build>
         </profile>
+
         <profile>
             <id>local</id>
             <properties>
                 <spring.profiles.active>local</spring.profiles.active>
             </properties>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+            </build>
         </profile>
     </profiles>
 
@@ -72,20 +93,6 @@
     </dependencies>
 
     <build>
-        <resources>
-        <!--    <resource>
-                <directory>src/main/resources</directory>
-                <excludes>
-                    <exclude>*.yaml</exclude>
-                </excludes>
-            </resource>-->
-
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
