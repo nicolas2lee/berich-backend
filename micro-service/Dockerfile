@@ -8,4 +8,4 @@ ENV JAVA_OPTS=""
 WORKDIR /app
 COPY --from=builder /app/exposition/target/exposition-1.0-SNAPSHOT.jar app.jar
 VOLUME /conf
-CMD java -Dspring.config.location=/conf -jar app.jar
+CMD java -Dspring.config.location=/conf/ -jar app.jar
