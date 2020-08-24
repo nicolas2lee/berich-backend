@@ -1,0 +1,13 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://admin:<password>@berich-dev.suoqj.mongodb.net/berich-dev?retryWrites=true&w=majority&rm.keepAlive=true
+#      username: admin
+#      password: password
+#      database: berich-dev
+#      host: berich-dev.suoqj.mongodb.net
+#      port: 27017
+
+logging:
+  level:
+    root: INFO
