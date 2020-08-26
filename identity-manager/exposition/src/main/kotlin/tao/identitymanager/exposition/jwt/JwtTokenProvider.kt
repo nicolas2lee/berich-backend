@@ -17,6 +17,9 @@ class JwtTokenProvider {
 
     @Value("\${app.jwtExpirationInMs}")
     private val jwtExpirationInMs = 0*/
+    companion object{
+        const val AUTHENTICATED_KEY: String = "authenticated"
+    }
 
     fun createToken(aud: String, subject: String, expirationMillis: Long): String {
         val header = JWSHeader(JWSAlgorithm.HS256)
@@ -25,6 +28,7 @@ class JwtTokenProvider {
                 .issuer("tao.berich")
                 .expirationTime(Date(System.currentTimeMillis() + expirationMillis))
                 .audience(aud)
+                .claim(AUTHENTICATED_KEY, true)
                 .build()
         val signedJWT = SignedJWT(header, claimsSet)
         val secret = "y/B?E(H+MbQeThWmYq3t6w9z@a&F)J@N"

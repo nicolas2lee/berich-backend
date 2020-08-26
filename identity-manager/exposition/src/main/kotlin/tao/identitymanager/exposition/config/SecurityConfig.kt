@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity
 import org.springframework.security.config.web.server.ServerHttpSecurity
 import org.springframework.security.core.Authentication
+import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.web.server.SecurityWebFilterChain
 import org.springframework.security.web.server.WebFilterExchange
 import org.springframework.security.web.server.authentication.ServerAuthenticationSuccessHandler
@@ -46,10 +47,11 @@ class SecurityConfig {
         }
 
         override fun onAuthenticationSuccess(webFilterExchange: WebFilterExchange, authentication: Authentication): Mono<Void> {
+            val userDetails = authentication.principal as UserDetails
+            val jwt = jwtTokenProvider.createToken("aud", userDetails.username, 10000)
+            LOG.debug("Generated jwt is: [$jwt]")
             val response = webFilterExchange.exchange.response
             response.cookies.remove("SESSION")
-            val jwt = jwtTokenProvider.createToken("aud", authentication.principal.toString(), 10000)
-            LOG.debug("Generated jwt is: [$jwt]")
             response.headers.add("Set-Cookie", "${AUTHORIZATION_HEADER}=Bearer ${jwt}; HttpOnly")
             response.statusCode = HttpStatus.FOUND
             response.headers.location = URI.create("/")
