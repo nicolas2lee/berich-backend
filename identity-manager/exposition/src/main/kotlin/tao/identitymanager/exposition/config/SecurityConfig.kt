@@ -29,7 +29,7 @@ class SecurityConfig {
     fun securityWebFilterChain(http: ServerHttpSecurity, jwtTokenProvider: JwtTokenProvider): SecurityWebFilterChain {
         return http
                 .csrf().disable()
-                //.cors().configurationSource(CorsConfig()).and()
+                .cors().configurationSource(CorsConfig()).and()
                 .authorizeExchange()
                 .pathMatchers( "/login").permitAll()
                 .anyExchange().authenticated()
@@ -56,6 +56,7 @@ class SecurityConfig {
             val response = webFilterExchange.exchange.response
             response.cookies.remove("SESSION")
             response.headers.add("Set-Cookie", "${JWT_TOKEN}=${jwt}; HttpOnly")
+            response.headers.add("Referrer-Policy", "same-origin")
             response.statusCode = HttpStatus.FOUND
             response.headers.location = URI.create("/me")
             return Mono.empty<Void>().then()
