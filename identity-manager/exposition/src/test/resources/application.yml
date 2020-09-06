@@ -13,4 +13,4 @@ logging:
     root: INFO
 
 jwt:
-  secret: <jwt-secret>
+  secret: testsecret

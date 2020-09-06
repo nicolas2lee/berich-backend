@@ -13,7 +13,7 @@ class UserEntity : AbstractEntity() {
     lateinit var username: String
     //default password are encrypted with bcrypt
     lateinit var password: String
-    lateinit var authorities: Set<String>
+    lateinit var authorities: Collection<String>
 
 
     fun toDomain() : UserDetails {
